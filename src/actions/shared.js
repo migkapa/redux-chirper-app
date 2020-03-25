@@ -1,12 +1,12 @@
 import { getInitialData } from '../utils/api';
-import { recieveTweets } from '../actions/tweets';
-import { recieveUsers } from '../actions/users';
-import { setAuthedUser } from '../actions/authedUser';
+import { recieveTweets } from './tweets';
+import { recieveUsers } from './users';
+import { setAuthedUser } from './authedUser';
 
 const AUTHED_ID = 'tylermcginnis';
 
 // a thunk action creator must be used
-export default handleInitialData = () => {
+export function handleInitialData() {
   return dispatch => {
     return getInitialData().then(({ users, tweets }) => {
       dispatch(recieveUsers(users));
@@ -14,4 +14,4 @@ export default handleInitialData = () => {
       dispatch(setAuthedUser(AUTHED_ID));
     });
   };
-};
+}
